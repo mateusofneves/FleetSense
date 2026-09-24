@@ -1,5 +1,7 @@
 import pandas as pd
 from analise import analisar_locacoes
+from estatistica import teste_media
+from estatisticas import calcular_estatisticas
 
 df = pd.read_csv('../data/locacoes.csv')
 
@@ -11,3 +13,14 @@ print("Mediana de dias de locação:", resultados['mediana'])
 print("Desvio padrão de dias de locação:", resultados['desvio_padrao'])
 print("Mínimo de dias de locação:", resultados['minimo'])
 print("Máximo de dias de locação:", resultados['maximo'])
+
+media_referencia = 7
+
+teste = teste_media(
+    df['dias_locacao'], 
+    media_referencia
+)
+
+print("\nTeste de hipótese")
+print("t:", teste["t_statistic"])
+print("p-valor:", teste["p_value"])
