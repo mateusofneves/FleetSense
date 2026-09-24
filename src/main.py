@@ -1,7 +1,7 @@
 import pandas as pd
-from analise import analisar_locacoes
+from analise import analisar_locacoes, analisar_por_categoria
 from estatistica import teste_media
-from estatisticas import calcular_estatisticas
+from estatistica import calcular_estatisticas
 
 df = pd.read_csv('../data/locacoes.csv')
 
@@ -24,3 +24,5 @@ teste = teste_media(
 print("\nTeste de hipótese")
 print("t:", teste["t_statistic"])
 print("p-valor:", teste["p_value"])
+
+analise_categoria = analisar_por_categoria(df)

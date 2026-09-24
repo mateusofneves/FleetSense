@@ -16,3 +16,13 @@ def analisar_locacoes(df):
         'minimo': minimo,
         'maximo': maximo
     }
+
+def analisar_por_categoria(df):
+    resultados = {}
+    categorias = df['categoria'].unique()
+
+    for categoria in categorias:
+        df_categoria = df[df['categoria'] == categoria]
+        resultados[categoria] = analisar_locacoes(df_categoria)
+
+    return resultados
