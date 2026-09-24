@@ -1,28 +1,38 @@
 import pandas as pd
-from analise import analisar_locacoes, analisar_por_categoria
+
+from analise import analisar_locacoes
 from estatistica import teste_media
-from estatistica import calcular_estatisticas
 
-df = pd.read_csv('../data/locacoes.csv')
+df = pd.read_csv("../data/locacoes.csv")
 
-resultados = analisar_locacoes(df)
-
-print("Quantidade de locações:", resultados['quantidade'])
-print("Média de dias de locação:", resultados['media'])
-print("Mediana de dias de locação:", resultados['mediana'])
-print("Desvio padrão de dias de locação:", resultados['desvio_padrao'])
-print("Mínimo de dias de locação:", resultados['minimo'])
-print("Máximo de dias de locação:", resultados['maximo'])
+analise = analisar_locacoes(df)
 
 media_referencia = 7
 
-teste = teste_media(
-    df['dias_locacao'], 
+resultado = teste_media(
+    df["dias_locacao"],
     media_referencia
 )
 
-print("\nTeste de hipótese")
-print("t:", teste["t_statistic"])
-print("p-valor:", teste["p_value"])
+print("===== FLEETSENSE =====")
+print(f"Contratos: {analise['quantidade']}")
+print(f"Média: {analise['media']:.2f} dias")
+print(f"Mediana: {analise['mediana']:.2f} dias")
+print(f"Desvio padrão: {analise['desvio_padrao']:.2f} dias")
 
-analise_categoria = analisar_por_categoria(df)
+print("\n===== TESTE DE HIPÓTESE =====")
+print("H0: μ = 7 dias")
+print("H1: μ ≠ 7 dias")
+print(f"t: {resultado['t_statistic']:.4f}")
+print(f"p-valor: {resultado['p_value']:.4f}")
+print(f"α: {resultado['alpha']}")
+
+print(f"\nDecisão: {resultado['decisao']}")
+
+print(
+    f"IC 95%: {resultado['ic_inferior']:.2f} a "
+    f"{resultado['ic_superior']:.2f} dias"
+)
+
+print("\n===== CONCLUSÃO =====")
+print(resultado["conclusao"])
