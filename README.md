@@ -1,3 +1,9 @@
+# INTEGRANTES :
+Mateus de Oliveira Fernandes Neves	572431
+Olavo Dadario Vianna Barreto	569272
+Paulo Henrique Lira Bilac de Araujo	569496
+Pedro Soares de Souza	571285
+Jhon Cutile Titirico	571976
 # FleetSense
 
 Sistema em Python para análise estatística de locações de veículos.
